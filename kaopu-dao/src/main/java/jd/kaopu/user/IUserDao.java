@@ -10,4 +10,13 @@ package jd.kaopu.user;
  * @author 周飞
  */
 public interface IUserDao {
+
+    // 保存数据
+    public void add(User user);
+
+    // 更新数据
+    public void update(User user);
+    
+    // 查选用户数目
+    public int count(User user);
 }

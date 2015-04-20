@@ -21,4 +21,5 @@ public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements IUserDao 
     public String getTAG() {
         return TAG;
     }
+
 }
