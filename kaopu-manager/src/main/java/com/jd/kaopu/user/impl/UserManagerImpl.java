@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jd.kaopu.user.impl;
+package com.jd.kaopu.user.impl;
 
-import jd.kaopu.user.IUserDao;
-import jd.kaopu.user.IUserManager;
+import com.jd.kaopu.user.IUserDao;
+import com.jd.kaopu.user.IUserManager;
 import jd.kaopu.user.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

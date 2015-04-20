@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jd.kaopu.user;
+package com.jd.kaopu.user;
+
+import jd.kaopu.user.User;
 
 /**
  *
