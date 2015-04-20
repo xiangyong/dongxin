@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="8388608" />
+	<!--max 8M -->
+	<constant name="struts.objectFactory.spring.autoWire" value="name" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.custom.i18n.resources" value="i18n/messages" />
+	<package name="struts-base" extends="struts-default">
+		<result-types>
+			<result-type name="velocity"
+				class="com.jd.common.struts.velocity.VelocityLayoutResult" default="true" />
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor-stack name="strutsDefaultStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">4194304</param>
+					<!--single file max 4M -->
+					<param name="allowedTypes">
+						image/x-png,image/png,image/gif,image/jpeg,image/jpg,image/pjpeg
+                    </param>
+					<param name="allowedExtensions">jpg,jpeg,png,gif</param>
+				</interceptor-ref>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="strutsDefaultStack" />
+		<!-- 异常跳转到JD公用的错误页，error为参数操作错误跳转页 -->
+		<global-results>
+			<result name="exception" type="redirect">http://www.jd.com/error2.aspx</result>
+			<result name="error">/WEB-INF/vm/error.vm</result>
+			<result name="login" type="redirect">http://passport.jd.com/new/login.aspx</result>
+		</global-results>
+	</package>
+		<!-- 登陆拦截器配置 需要登录的action继承 struts-login-->
+	<package name="struts-login" extends="struts-base">
+		<interceptors>
+            <interceptor name="passportTicketInterceptor" class="com.jd.passport.inteceptor.strut2.Strut2LoginInterceptor" />
+            <interceptor-stack name="mydefault">
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+                <interceptor-ref name="passportTicketInterceptor"/>
+            </interceptor-stack>
+        </interceptors> 
+        <default-interceptor-ref name="mydefault" />
+    </package>
+	<include file="struts/struts-order.xml"></include>
+	<include file="struts/struts-domyself.xml"></include>
+	
+	
+	
+	
+</struts>

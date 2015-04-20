@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+	default-autowire="byName">
+
+
+	<bean id="dataSourceBak" factory-bean="platformServiceOrderDSRead"
+		factory-method="getDataSourceInstance" scope="prototype">
+		<aop:scoped-proxy />
+	</bean>
+
+	<bean id="platformServiceOrderDSRead" class="com.jd.platform.dao.route.factory.PlatformServiceOrderDSReadFactory">
+		<property name="defalutDS_HC" ref="dataSource" />
+		<property name="dataSourceMap">
+			<map>
+				<entry key="1" value-ref="platformOrderDSBakForRead_hc" />
+				<entry key="2" value-ref="platformOrderDSBakForRead_yz" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

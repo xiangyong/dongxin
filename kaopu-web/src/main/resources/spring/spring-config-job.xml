@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+	
+    <!--推送邮件worker  -->
+    <bean id="completeRetreOrderJob" class="com.jd.platform.bugou.order.service.Impl.CompleteRetreOrderJobImpl"> 
+    </bean>
+	 
+    <bean id="allStartService" lazy-init="false" autowire="no"
+               class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="workOrderServiceJobTime" />
+                <ref bean="workVkeyNoLocalStockJobTime" />
+                <ref bean="historyOrderStoreSchedule"/>
+            </list>
+        </property>
+    </bean>
+	
+    <bean id="workOrderServiceJobTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="workOrderServiceJob" />
+        </property>
+        <property name="cronExpression">
+            <!--  0 0 2 * * ? -->
+            <!--   0 */1 * * * ?-->
+            <!-- 每天凌晨2点开始执行 -->
+            <!-- 0 0 0 * * ?  <value> 0 0 0 * * ?</value>-->
+            <value>0 0 2 * * ?</value>
+        </property>
+    </bean>
+    <bean id="workOrderServiceJob"
+              class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="completeRetreOrderJob" />
+        <property name="targetMethod" value="pushDataToEDM" />
+    </bean>
+
+    <!-- 重发非本地虚拟密钥订单信息开始 -->
+    <bean id="vkeyNoLocalStockJob" class="com.jd.platform.service.virtualkey.impl.VirtualKeyNoLocalStockJobImpl"> 
+    </bean>
+    <bean id="workVkeyNoLocalStockJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="vkeyNoLocalStockJob" />
+        <property name="targetMethod" value="resendVKeyNoLocalStock" />
+    </bean>
+    <bean id="workVkeyNoLocalStockJobTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="workVkeyNoLocalStockJob" />
+        </property>
+        <property name="cronExpression">
+            <!-- 每隔10分钟执行一次  -->
+            <value>0 */10 * * * ?</value>
+        </property>
+    </bean>
+    <!-- 重发非本地虚拟密钥订单信息开始 -->
+    
+    <!-- 历史订单备份JOB -->
+    <bean id="historyOrderStoreService" class="com.jd.platform.service.worker.impl.HistoryOrderStoreServiceImpl"></bean>
+    <bean id="historyOrderStoreJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="historyOrderStoreService" />
+        <property name="targetMethod" value="storeHistoryOrder" />
+    </bean>
+    <bean id="historyOrderStoreSchedule" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="historyOrderStoreJob" />
+        </property>
+        <property name="cronExpression">
+            <!--每周星期日00:00:00执行-->
+            <value>0 0 0 ? * SUN</value>
+            <!--<value>0 */2 * * * ?</value>-->
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName"> 
+    <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:props/datasource.properties</value>   
+                <value>classpath:props/important.properties</value>   
+            </list>
+        </property>
+    </bean> 
+    <import resource="spring/spring-config-struts.xml" /> 
+    <import resource="spring/spring-config-rpc.xml" />
+    <import resource="spring/spring-config-datasource-dbcp.xml" />
+    <import resource="spring/spring-config-dao.xml" />
+    <import resource="spring/spring-config-dubbo-client.xml" />
+    <import resource="spring/spring-config-ws.xml" />
+    <import resource="spring/spring-config-manager.xml" />
+    <import resource="spring/spring-config-service.xml" />  
+    <!-- worker 里面添加 -->
+    <import resource="spring/spring-config-domyself.xml"/>
+    <import resource="spring/spring-config-job.xml"/>
+    <import resource="spring/spring-config-aop.xml"/>
+</beans>

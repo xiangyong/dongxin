@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+			            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd   
+			            http://www.springframework.org/schema/aop   
+			            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+	default-autowire="byName">
+	<!-- dao层监控切面  -->
+	<aop:config>
+		<aop:aspect id="daoUmpAop" ref="daoUmpAspect">
+		    
+			<aop:pointcut id="orderRecordDaoUmpAop" expression="execution(* com.jd.platform.bugou.order.dao.Impl..*.*(..))" />
+			<aop:around pointcut-ref="orderRecordDaoUmpAop" method="doOrderRecord" />
+			
+			<aop:pointcut id="platformOrderDaoUmpAop" expression="execution(* com.jd.platform.*.dao.*mpl..*.*(..))
+			    												or execution(* com.jd.platform.dao.*.*mpl..*.*(..))
+			    												and !execution(* com.jd.platform.bugou.order.dao.Impl..*.*(..))" />
+			<aop:around pointcut-ref="platformOrderDaoUmpAop" method="doPlatformOrder" />
+			
+			<aop:pointcut id="singleDaoUmpAop" expression="execution(* com.jd.platform..*.dao.*mpl..*.*(..))
+			    										or execution(* com.jd.platform.dao.*.*mpl..*.*(..))" />
+			<aop:around pointcut-ref="singleDaoUmpAop" method="doSingleDaoUmp" />
+			
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 数据库动态路由切面 -->
+	<aop:config>
+		<aop:aspect id="databaseRouterAop" ref="databaseRouterAspect">
+		    
+			<aop:pointcut id="bugouDatabaseRouterAop" expression="execution(* com.jd.platform.bugou.order.dao.Impl..*.*(..))" />
+			<aop:around pointcut-ref="bugouDatabaseRouterAop" method="doOrderRecord" />
+			
+			<aop:pointcut id="platformOrderDatabaseRouterAop" expression="execution(* com.jd.platform.*.dao.*mpl..*.*(..))
+			    												or execution(* com.jd.platform.dao.*.*mpl..*.*(..))
+			    												and !execution(* com.jd.platform.bugou.order.dao.Impl..*.*(..))" />
+			<aop:around pointcut-ref="platformOrderDatabaseRouterAop" method="doPlatformOrder" />
+			
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="daoUmpAspect" class="com.jd.platform.common.aop.DaoUmpAspect" />
+	<bean id="databaseRouterAspect" class="com.jd.platform.util.router.DatabaseRouterAspect" />
+</beans>

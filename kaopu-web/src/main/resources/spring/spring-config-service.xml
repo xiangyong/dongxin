@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   
+			            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd   
+			            http://www.springframework.org/schema/aop   
+			            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+       default-autowire="byName">
+    <bean id="redisUtils" class="com.jd.data.spring.RedisClientFactoryBean">
+        <!--zookeeper 配置优先文本配置，如果两个都有配置，只从zookeeper中取redis config -->
+        <!-- 文本配置 开始 -->
+        <!-- 单个应用中的链接池最大链接数 -->
+        <property name="maxActive" value="150" />
+        <!-- 单个应用中的链接池最大空闲数 -->
+        <property name="maxIdle" value="50" />
+        <!-- 单个应用中的链接池取链接时最大等待时间，单位：ms -->
+        <property name="maxWait" value="1000" />
+        <!-- 设置在每一次取对象时测试ping -->
+        <property name="testOnBorrow" value="false" />
+        <!-- 设置redis connect request response timeout 单位:ms -->
+        <property name="timeout" value="2000" />
+        <!-- master redis server 设置 -->
+        <!-- host:port:password[可选,password中不要有":"],redis server顺序信息一定不要乱，请按照分配顺序填写，乱了就可能会出现一致性hash不同，造成不命中cache情况 -->
+        <!-- 测试环境master -->
+        <property name="masterConfString" value="192.168.155.103:6379" />
+        <!-- 正式环境master
+        <property name="masterConfString" value="192.168.130.24:6379"/> -->
+			
+        <!-- slave redis server 设置[可选] -->
+        <!-- host:port:password[可选,password中不要有":"],redis server顺序信息一定不要乱，请按照分配顺序填写，乱了就可能会出现一致性hash不同，造成不命中cache情况 -->
+        <!-- 测试环境slave 
+        <property name="slaveConfString" value="10.10.224.80:6380,10.10.224.78:6380" />-->
+        <!-- 正式环境slave
+        <property name="slaveConfString" value="192.168.130.25:6380,192.168.130.26:6380,192.168.130.27:6380"/> 
+        -->
+        <!-- 文本配置 结束 -->
+
+        <!--zookeeper 配置优先文本配置，如果两个都有，只从zookeeper中取redis config -->
+        <!-- zookeeper server 地址
+        <property name="zooKeeperServers" value="192.168.229.53:2181,192.168.229.54:2181,192.168.229.55:2181" /> -->
+        <!-- zookeeper中 redis config node path 
+        <property name="zooKeeperConfigRedisNodeName" value="/redis/config/test" />-->
+        <!-- zookeeper client timeout 
+        <property name="zooKeeperTimeout" value="5000" />-->
+        <!--zookeeper 配置结束 -->
+    </bean>
+		
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <bean class="com.jd.ump.annotation.JAnnotation">
+        <!-- 初始化系统的心跳 key-->
+        <property name="systemKey" value="YanBao--OrderSystemKey"></property>
+        <!-- 初始化系统的jvm监控 key-->
+        <property name="jvmKey" value="YanBao--OrderJvmKey"></property>
+    </bean>
+
+
+
+    <bean id="supplizerService" class="com.jd.platform.supplizersystem.service.impl.SupplizerServiceImpl">
+    </bean>
+    <bean id="supplierOrderService" class="com.jd.platform.supplizersystem.service.impl.SupplierOrderServiceImpl">
+        <!--延保订单详情页中缓存key的设置  缓存格式 serviceplatform-myorder-orderID(订单id)-serviceId(服务商品id)-->
+        <property name="myOrderRedisKey" value="serviceplatform-myorder-" />
+    </bean>
+	
+	
+    <!--延保服务对外提供的http接口  -->
+    <bean id="completeRetreatOrderService" class="com.jd.platform.bugou.order.service.Impl.CompleteRetreatOrderServiceImpl">
+    </bean>
+	
+    <!--延保补够需要的内部服务支持 -->
+	
+    <bean id="platformProductService" class="com.jd.platform.dubbo.service.product.impl.PlatformProductServiceImpl">
+    </bean>
+	
+    <!--服务商所需要的支持-->
+    <bean id="facilitatorService" class="com.jd.platform.service.nexus.impl.FacilitatorServiceImpl" />
+	
+    <!-- 虚拟密钥管理类 -->
+    <bean id="virtualKeyService" class="com.jd.platform.service.nexus.impl.VirtualKeyServiceImpl" />
+	
+    <!-- 虚拟密钥通用下单 -->
+    <bean id="verticalSubmitOrderService" class="com.jd.platform.service.order.impl.VerticalSubmitOrderServiceImpl" />
+	
+    <!-- diy京东特色服务区域限制 -->
+    <bean id="diyServcieLimitService" class="com.jd.platform.service.diyarealimit.impl.DiyServcieLimitServiceImpl" />
+    <!-- diy京东特色服务区域限制 -->
+    <bean id="routerService" class="com.jd.platform.router.service.RouterServiceImpl" />
+	
+    <!-- 第三方供应商虚拟密钥service类  -->
+    <bean id="virtualKeyNoLocalStockService" class="com.jd.platform.service.virtualkey.impl.VirtualKeyNoLocalStockServiceImpl" />
+	
+    <!-- 第三方供应商虚拟密钥订单完成发送mq消息 -->
+    <bean id="virtualKeyOrderMqMessageProducer" class="com.jd.platform.service.mq.handler.VirtualKeyOrderMqMessageProducer"/>
+    
+    <!-- 屏碎保订单service类 -->
+    <bean id="pingSuiBaoService" class="com.jd.platform.service.pingsuibao.impl.PingSuiBaoServiceImpl"/>
+    <!-- 屏碎保订单中手机品牌型号service类 -->
+    <bean id="phoneService" class="com.jd.platform.service.pingsuibao.impl.PhoneServiceImpl"/>
+    
+    <!-- 配置信息 -->
+    <bean id="configService" class="com.jd.order.purchase.config.client.xmlext.service.impl.XmlConfigServiceImpl">
+        <constructor-arg index="0">
+            <map>
+            	<entry key="2213" value="com.jd.platform.common.config.ProductServiceConfig" />
+            </map>
+        </constructor-arg>
+        <constructor-arg index="1" ref="netService">
+        </constructor-arg>
+    </bean>
+    <bean id="netService" class="com.jd.order.purchase.config.client.service.impl.NetServiceImpl" >
+    	<constructor-arg index="0" ref="clientNetConfigure">
+        </constructor-arg>
+    </bean>
+    <bean id="clientNetConfigure" class="com.jd.order.purchase.config.domain.ClientNetConfigure">
+    	<property name="domainName" value="purchaseconfig.purchase.jd.local"></property>
+    </bean>
+    
+    <!-- 实时价格service类 -->
+    <bean id="realtimePriceService" class="com.jd.platform.service.rpc.realtimeprice.RealtimePriceServiceImpl"/>
+    
+    <bean id="dataSourceRouterConfig" class="com.jd.platform.util.router.DataSourceRouterConfig"/>
+    
+    <!-- 富士冲印service类 -->
+    <bean id="fsPhotoService" class="com.jd.platform.service.fsphoto.FsPhotoServiceImpl"/>
+    <!-- 补购--> 
+    <bean id="bugouOrderService" class="com.jd.platform.bugou.order.service.Impl.BugouOrderServiceImpl"/>
+    
+    <!-- 增值税发票service类 -->
+    <bean id="vatInvoiceService" class="com.jd.platform.service.invoice.VatInvoiceServiceImpl"/>
+    
+    <!-- 绑定销售的延保订单service类 -->
+    <bean id="bindSaleOrderService" class="com.jd.platform.service.order.impl.BindSaleOrderServiceImpl"/>
+    
+    <!-- 商品service类 -->
+    <bean id="productBusinessService" class="com.jd.platform.service.product.ProductServiceImpl"/>
+    
+    <!-- 富士冲印定时任务执行类 -->
+    <bean id="fsPhotoTaskExecutor" class="com.jd.platform.service.fsphoto.schedule.FsPhotoTaskExecutor">
+        <property name="corePoolSize" value="3" />
+    </bean>
+    
+         <!-- 微信http服务 -->
+    <bean id="platformWeChatService" class="com.jd.platform.wechat.service.impl.PlatformWeChatServiceImpl"/>
+    <!-- JdSku与SuppSku转化-->
+    <bean id="skuConvertService" class="com.jd.platform.service.order.impl.SkuConvertServiceImpl"/>
+ 	<bean id="skuConvert" class="com.jd.platform.service.fsphoto.convert.SkuConvert"/>
+    <bean id="yanbaoProductservice" class="com.jd.platform.dubbo.service.product.impl.YanBaoProductRelationServiceImpl"/>
+    
+    <bean id ="productService" class="com.jd.platform.rpc.process.impl.ProductServiceRPCImpl"/>
+    
+    <!-- 采购价service -->
+    <bean id="outStockPurchasePriceService" class="com.jd.platform.service.worker.impl.OutStockPurchasePriceServiceImpl"/>
+     <!-- 查询延保分类信息service -->
+    <bean id="yanbaoCategoryForDubboService" class="com.jd.platform.dubbo.service.yanbaocategory.impl.YanbaoCategoryForDubboServiceImpl"/>
+    
+ </beans>

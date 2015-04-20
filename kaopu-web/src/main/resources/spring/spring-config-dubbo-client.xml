@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:saf="http://code.360buy.com/schema/saf"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.360buy.com/schema/saf
+       http://code.360buy.com/schema/saf/saf.xsd"
+	default-autowire="byName" default-lazy-init="false">  
+
+	<saf:application name="platformOrderWeb" />
+	  
+	<saf:registry address="jdZooKeeper://192.168.150.119,192.168.150.120,192.168.150.121:2181"/>
+	 
+	<saf:reference id="productService_b28"
+		interface="com.jd.catagory.pbim.pbia.dubbo.service.ProductService"
+		timeout="30000" version="1.0" group="producttrunk"  />
+	
+	<saf:reference id="productService_yz"
+		interface="com.jd.catagory.pbim.pbia.dubbo.service.ProductService"
+		timeout="30000" version="1.0" group="producttrunk"  />
+
+	<!-- 地址服务 -->
+	<saf:reference id="areaService" url="saf://192.168.155.103:37075/com.jd.primitive.client.address.service.AreaService"
+		interface="com.jd.primitive.client.address.service.AreaService" version="1.0.1" group="address-areaservice" check="false" />
+		
+		<!--垂直站通用下单接口  192.168.196.112:36080 192.168.232.119:36070-->
+	<saf:reference id="submitOrderExport" interface="com.jd.vertical.trade.sdk.export.SubmitOrderExport" retries="1"
+	     url="dubbo://192.168.155.118:36080"  version="0.0.1" group="0.0.1" timeout="60000">
+	</saf:reference>
+	
+	<!--获取权限系统用户信息接口 -->      
+	<saf:reference id="authUserWebService" interface="com.jd.vc.auth.support.engine.AuthUserWebService" 
+    	url="dubbo://192.168.228.104:20880" group="VCAUTH" timeout="30000" version="1.0"/>
+	
+	<!-- <saf:reference id="orderverServiceSaf" interface="com.jd.f2p.orderver.export.OrderverExportService"  
+		group="F2PORDERVER" version="1.0"  timeout="500" registry="jdZooKeeper"/> -->
+	
+</beans>
