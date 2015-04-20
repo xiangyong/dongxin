@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jd.kaopu.user.impl;
+package com.jd.kaopu.user.impl;
 
-import jd.kaopu.base.impl.BaseDaoImpl;
-import jd.kaopu.user.IUserDao;
+import com.jd.kaopu.base.impl.BaseDaoImpl;
+import com.jd.kaopu.user.IUserDao;
 import jd.kaopu.user.User;
 
 /**
