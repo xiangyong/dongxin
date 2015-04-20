@@ -6,8 +6,8 @@
 package jd.kaopu.user;
 
 /**
- *
- * @author zhoufei1
+ * 用户状态接口
+ * @author 周飞
  */
 public interface IUserStateDao {
     

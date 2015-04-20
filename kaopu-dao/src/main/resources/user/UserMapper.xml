@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- namespace用于java代码调用时识别指定xml的mapper文件 -->  
+<mapper namespace="UserMapper">  
+    <!-- 开启Mabatis二级缓存 -->  
+    <cache/>
+    <!-- 用来定义可重用的SQL代码段 -->  
+    <sql id="user_sql">  
+        name,pwd,sex,age,register_date,email,phone,local,birth_year,birth_mouth,birth_day,province,city,weibo,qq,vip,level,netname,signature
+    </sql>  
+   
+    <insert id="UserDaoImpl.add" parameterType="User">  
+        <!-- include 引用可重用的SQL代码段 -->  
+        INSERT INTO USER<include refid="user_sql"/>) VALUES(#{id},#{name},#{pwd},#{sex},#{age},#{register_date},#{email},#{phone},#{local},#{birth_year},#{birth_mouth},#{birth_day},#{province},#{city},#{weibo},#{qq},#{vip},#{level},#{netname},#{signature})  
+    </insert>
+    <update id="update_userInfo" parameterType="UserInfo">  
+        UPDATE USER SET code=#{code} ,name=#{name} ,sex=#{sex} ,phone=#{phone} ,money=#{money} WHERE id=#{id}  
+    </update>  
+    
+    <select id="selectAll_userInfo"  resultMap="user_orm">  
+        SELECT * FROM USERINFO  
+    </select>  
+     
+    <select id="selectById_userInfo" parameterType="int" resultType="UserInfo">  
+        SELECT * FROM USERINFO WHERE id= #{id}  
+    </select>  
+</mapper>

@@ -6,9 +6,9 @@
 package jd.kaopu.user;
 
 /**
- *
- * @author zhoufei1
+ * 用户日志接口
+ * @author 周飞
  */
 public interface IUserLogDao {
-    
+
 }
