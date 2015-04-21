@@ -30,7 +30,10 @@ public class UserController {
     @RequestMapping(value = "/login/{name}/{pwd}/{client}", method = RequestMethod.POST)
     @ResponseBody
     public User userLogin(@PathVariable("name") String username,
-            @PathVariable("name") String pwd, @PathVariable("client") String client) {
+            @PathVariable("pwd") String pwd, @PathVariable("client") String client) {
+        System.out.println("username = " + username);
+        System.out.println("pwd = " + pwd);
+        System.out.println("client = " + client);
         return userservice.userLogin(username, pwd, client);
     }
 }
