@@ -49,7 +49,9 @@
     -->
 
     <!-- 别名 -->
-    <typeAlias alias="User" type="com.jd.kaopu.domain.user.User"/>
+    <typeAliases>
+        <typeAlias alias="User" type="com.jd.kaopu.domain.user.User"/>
+    </typeAliases> 
     <!-- ORM映射文件 -->
     <mappers>
         <!-- 用户相关XML -->
