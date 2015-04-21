@@ -9,8 +9,7 @@
         name,pwd,sex,age,register_date,email,phone,local,birth_year,birth_mouth,birth_day,province,city,weibo,qq,vip,level,netname,signature
     </sql>  
    
-    <insert id="UserDaoImpl.add" parameterType="User">  
-        <!-- include 引用可重用的SQL代码段 -->  
+    <insert id="userdaoimpl_add" parameterType="User">
         INSERT INTO USER<include refid="user_sql"/>) VALUES(#{id},#{name},#{pwd},#{sex},#{age},#{register_date},#{email},#{phone},#{local},#{birth_year},#{birth_mouth},#{birth_day},#{province},#{city},#{weibo},#{qq},#{vip},#{level},#{netname},#{signature})  
     </insert>
     <update id="update_userInfo" parameterType="UserInfo">  

@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-autowire="byName"> 
-    <bean
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:props/datasource.properties</value>   
-                <value>classpath:props/important.properties</value>   
-            </list>
-        </property>
-    </bean> 
-    <import resource="spring/spring-config-struts.xml" /> 
-    <import resource="spring/spring-config-rpc.xml" />
-    <import resource="spring/spring-config-datasource-dbcp.xml" />
-    <import resource="spring/spring-config-dao.xml" />
-    <import resource="spring/spring-config-dubbo-client.xml" />
-    <import resource="spring/spring-config-ws.xml" />
-    <import resource="spring/spring-config-manager.xml" />
-    <import resource="spring/spring-config-service.xml" />  
-    <!-- worker 里面添加 -->
-    <import resource="spring/spring-config-domyself.xml"/>
-    <import resource="spring/spring-config-job.xml"/>
-    <import resource="spring/spring-config-aop.xml"/>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    
+    <!-- 引入配置属性文件 -->
+    <context:property-placeholder location="classpath:properties/datasource.properties"/>
+    <context:annotation-config />
+    <!--自动扫描含有注解将其注入 -->
+    <context:component-scan base-package="com.jd.kaopu.dao.base.impl"/>
+    <context:component-scan base-package="com.jd.kaopu.manager.user.impl"/>
+    <context:component-scan base-package="com.jd.kaopu.service.user.impl"/>
+    <!-- 引入其他的配置文件 -->
+    <import resource="spring/spring-datasource.xml"/>
+    <import resource="spring/spring-transaction.xml"/>
 </beans>
