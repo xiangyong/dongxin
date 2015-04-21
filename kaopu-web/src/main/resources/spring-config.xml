@@ -5,13 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
     
-    <!-- 引入配置属性文件 -->
-    <context:property-placeholder location="classpath:properties/datasource.properties"/>
-    <context:annotation-config />
     <!--自动扫描含有注解将其注入 -->
     <context:component-scan base-package="com.jd.kaopu.dao.base.impl"/>
     <context:component-scan base-package="com.jd.kaopu.manager.user.impl"/>
     <context:component-scan base-package="com.jd.kaopu.service.user.impl"/>
+    <!-- 引入配置属性文件 -->
+    <context:property-placeholder location="classpath:properties/datasource.properties"/>
+    
     <!-- 引入其他的配置文件 -->
     <import resource="spring/spring-datasource.xml"/>
     <import resource="spring/spring-transaction.xml"/>
