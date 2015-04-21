@@ -11,7 +11,7 @@
     <artifactId>kaopu-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>kaopu-web Maven Webapp</name>
+    <name>kaopu-web</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
