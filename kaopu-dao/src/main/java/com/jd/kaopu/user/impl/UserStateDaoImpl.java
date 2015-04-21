@@ -7,7 +7,7 @@ package com.jd.kaopu.user.impl;
 
 import com.jd.kaopu.base.impl.BaseDaoImpl;
 import com.jd.kaopu.user.IUserStateDao;
-import jd.kaopu.user.UserState;
+import com.jd.kaopu.user.UserState;
 
 /**
  * 用户状态

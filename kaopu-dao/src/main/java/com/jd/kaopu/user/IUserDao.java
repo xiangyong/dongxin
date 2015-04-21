@@ -5,8 +5,6 @@
  */
 package com.jd.kaopu.user;
 
-import jd.kaopu.user.User;
-
 /**
  * 用户接口
  * @author 周飞

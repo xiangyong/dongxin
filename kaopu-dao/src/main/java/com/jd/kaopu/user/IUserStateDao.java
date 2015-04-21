@@ -11,4 +11,12 @@ package com.jd.kaopu.user;
  */
 public interface IUserStateDao {
     
+    // 保存数据
+    public void add(UserState userstate);
+
+    // 更新数据
+    public void update(UserState userstate);
+
+    // 查选用户数目
+    public int count(UserState userstate);
 }

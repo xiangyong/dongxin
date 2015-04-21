@@ -7,7 +7,7 @@ package com.jd.kaopu.user.impl;
 
 import com.jd.kaopu.base.impl.BaseDaoImpl;
 import com.jd.kaopu.user.IUserDao;
-import jd.kaopu.user.User;
+import com.jd.kaopu.user.User;
 
 /**
  * 用户信息
