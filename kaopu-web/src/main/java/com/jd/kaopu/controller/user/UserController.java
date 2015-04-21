@@ -8,6 +8,7 @@ package com.jd.kaopu.controller.user;
 import com.jd.kaopu.service.user.IUserService;
 import com.jd.kaopu.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     @Autowired
+    @Qualifier("userservice")
     private IUserService userservice;
 
     @RequestMapping(value = "/login/{name}/{pwd}/{client}", method = RequestMethod.POST)

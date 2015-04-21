@@ -8,4 +8,23 @@
   <groupId>com.jd.kaopu</groupId>
   <artifactId>kaopu-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.jd.kaopu</groupId>
+            <artifactId>kaopu-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>kaopu-manager</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
