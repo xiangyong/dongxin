@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.List;
 import com.jd.kaopu.dao.base.IBaseDao;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @param <PK>
  */
 @Repository
-public class BaseDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport implements IBaseDao<T, PK> {
+public class BaseDaoImpl<T, PK extends Serializable>  implements IBaseDao<T, PK> {
 
     private static final String TAG = BaseDaoImpl.class.getSimpleName().toLowerCase();
     private static final String SQL_ADD = "_add";
