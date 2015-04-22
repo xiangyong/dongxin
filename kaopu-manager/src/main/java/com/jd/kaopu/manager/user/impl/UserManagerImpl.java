@@ -16,8 +16,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -25,16 +24,14 @@ import org.springframework.transaction.annotation.Transactional;
  * @author 周飞
  */
 @Transactional
-@Service("usermanager")
+@Component(value = "usermanager")
 public class UserManagerImpl implements IUserManager {
 
     private static final Logger log = Logger.getLogger(UserManagerImpl.class);
 
     @Autowired
-    @Qualifier("userdao")
     private IUserDao userdao;
     @Autowired
-    @Qualifier("userstatedao")
     private IUserStateDao userstatedao;
 
     @Override

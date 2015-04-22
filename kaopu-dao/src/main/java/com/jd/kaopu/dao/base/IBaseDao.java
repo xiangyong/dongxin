@@ -10,11 +10,13 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 基本接口
+ * 基本数据库操作接口
+ * 使用泛型接口提高提用率，由于mybatis有自动注入mapper的功能，已放弃使用,启用的话需要打开注解扫描器
  * @author 周飞
  * @param <T> 实体类
  * @param <PK> 主键
  */
+@Deprecated
 public interface IBaseDao<T, PK extends Serializable> {
 
     // 保存数据

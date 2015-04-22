@@ -5,13 +5,14 @@
  */
 package com.jd.kaopu.domain.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户的状态
  * @author 周飞
  */
-public class UserState {
+public class UserState implements Serializable{
 
     private int id;
     // 用户ID

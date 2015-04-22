@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
  * 用户日志
  * @author 周飞
  */
+@Deprecated
 @Repository("userlogdao")
 public class UserLogDaoImpl extends BaseDaoImpl<UserLog, Integer> implements IUserLogDao {
 
@@ -22,6 +23,21 @@ public class UserLogDaoImpl extends BaseDaoImpl<UserLog, Integer> implements IUs
     @Override
     public String getTAG() {
         return TAG;
+    }
+
+    @Override
+    public int count(UserLog entity) {
+        return super.count(entity);
+    }
+
+    @Override
+    public void update(UserLog entity) {
+        super.update(entity);
+    }
+
+    @Override
+    public void add(UserLog entity) {
+        super.add(entity);
     }
 
 }

@@ -5,13 +5,14 @@
  */
 package com.jd.kaopu.domain.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户日志
  * @author 周飞
  */
-public class UserLog {
+public class UserLog implements Serializable{
 
     private int id;
     // 日志记录时间

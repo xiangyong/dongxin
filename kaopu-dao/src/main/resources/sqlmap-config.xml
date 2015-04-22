@@ -51,10 +51,14 @@
     <!-- 别名 -->
     <typeAliases>
         <typeAlias alias="User" type="com.jd.kaopu.domain.user.User"/>
+        <typeAlias alias="UserState" type="com.jd.kaopu.domain.user.UserState"/>
+        <typeAlias alias="UserLog" type="com.jd.kaopu.domain.user.UserLog"/>
     </typeAliases> 
     <!-- ORM映射文件 -->
     <mappers>
         <!-- 用户相关XML -->
         <mapper resource="user/UserMapper.xml" />
+        <mapper resource="user/UserLogMapper.xml" />
+        <mapper resource="user/UserStateMapper.xml" />
     </mappers>
 </configuration>

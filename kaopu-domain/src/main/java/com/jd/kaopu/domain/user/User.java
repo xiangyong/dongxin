@@ -5,13 +5,14 @@
  */
 package com.jd.kaopu.domain.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户的基本信息
  * @author 周飞
  */
-public class User {
+public class User implements Serializable{
 
     private int id;
     // 登陆账号

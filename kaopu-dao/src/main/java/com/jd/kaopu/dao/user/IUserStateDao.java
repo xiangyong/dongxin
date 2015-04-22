@@ -6,6 +6,7 @@
 package com.jd.kaopu.dao.user;
 
 import com.jd.kaopu.domain.user.UserState;
+import java.util.List;
 
 /**
  * 用户状态接口
@@ -21,4 +22,7 @@ public interface IUserStateDao {
 
     // 查选用户数目
     public int count(UserState userstate);
+    
+    // 查询符合某一特征的用户状态列表
+    public List<UserState> list(UserState userstate);
 }

@@ -27,13 +27,21 @@ public class UserController {
     @Qualifier("userservice")
     private IUserService userservice;
 
-    @RequestMapping(value = "/login/{name}/{pwd}/{client}", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/{name}/{pwd}/{client}", method = RequestMethod.GET)
     @ResponseBody
-    public User userLogin(@PathVariable("name") String username,
+    public User userLogin(@PathVariable("name") String name,
             @PathVariable("pwd") String pwd, @PathVariable("client") String client) {
-        System.out.println("username = " + username);
+        System.out.println("name = " + name);
         System.out.println("pwd = " + pwd);
         System.out.println("client = " + client);
-        return userservice.userLogin(username, pwd, client);
+        System.out.println("result = " + userservice.userLogin(name, pwd, client));
+        return userservice.userLogin(name, pwd, client);
     }
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @ResponseBody
+    public String hello() {
+        return "hello,world!";
+    }
+
 }

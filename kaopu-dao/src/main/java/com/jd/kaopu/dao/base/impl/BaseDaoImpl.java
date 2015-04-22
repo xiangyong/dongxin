@@ -15,24 +15,26 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 基本的数据库操作DAO
+ * 使用泛型接口提高提用率，由于mybatis有自动注入mapper的功能，已放弃使用
  * @author 周飞
  * @param <T>
  * @param <PK>
  */
-@Repository
-public class BaseDaoImpl<T, PK extends Serializable>  implements IBaseDao<T, PK> {
+@Deprecated
+@Repository("basedao")
+public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> {
 
     private static final String TAG = BaseDaoImpl.class.getSimpleName().toLowerCase();
-    private static final String SQL_ADD = "_add";
-    private static final String SQL_ADDS = "_adds";
-    private static final String SQL_UPDATE = "_update";
-    private static final String SQL_UPDATES = "_updates";
-    private static final String SQL_DELETE = "_delete";
-    private static final String SQL_DELETES = "_deletes";
-    private static final String SQL_LIST = "_list";
-    private static final String SQL_LIST_PAGE = "_listpage";
-    private static final String SQL_COUNT = "_count";
-    private static final String SQL_GET = "_get";
+    private static final String SQL_ADD = ".add";
+    private static final String SQL_ADDS = ".adds";
+    private static final String SQL_UPDATE = ".update";
+    private static final String SQL_UPDATES = ".updates";
+    private static final String SQL_DELETE = ".delete";
+    private static final String SQL_DELETES = ".deletes";
+    private static final String SQL_LIST = ".list";
+    private static final String SQL_LIST_PAGE = ".listpage";
+    private static final String SQL_COUNT = ".count";
+    private static final String SQL_GET = ".get";
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -85,6 +87,14 @@ public class BaseDaoImpl<T, PK extends Serializable>  implements IBaseDao<T, PK>
     @Override
     public void delete(List<PK> entitys) {
         sqlSessionTemplate.delete(getTAG() + SQL_DELETES, entitys);
+    }
+
+    public SqlSessionTemplate getSqlSessionTemplate() {
+        return sqlSessionTemplate;
+    }
+
+    public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
     public String getTAG() {

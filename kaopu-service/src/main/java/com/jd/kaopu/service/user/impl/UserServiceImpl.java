@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
  * 用户相关
  * @author 周飞
  */
-@Service("userservice")
+@Service(value = "userservice")
 public class UserServiceImpl implements IUserService {
-    
+
     @Autowired
     @Qualifier("usermanager")
     private IUserManager usermanager;
@@ -28,6 +28,5 @@ public class UserServiceImpl implements IUserService {
         User user = new User(username, pwd);
         return usermanager.userLogin(user);
     }
-    
 
 }
