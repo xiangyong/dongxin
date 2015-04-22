@@ -12,7 +12,9 @@ import java.util.Date;
  * 用户的基本信息
  * @author 周飞
  */
-public class User implements Serializable{
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 7616947126248522289L;
 
     private int id;
     // 登陆账号
