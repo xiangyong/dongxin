@@ -7,6 +7,10 @@ package com.jd.kaopu.controller.user;
 
 import com.jd.kaopu.service.user.IUserService;
 import com.jd.kaopu.domain.user.User;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -53,6 +57,19 @@ public class UserController {
         System.out.println("client = " + client);
         System.out.println("result = " + userservice.userLogin(name, pwd, client));
         return userservice.userLogin(name, pwd, client);
+    }
+
+    @RequestMapping(value = "/logintest", method = RequestMethod.POST)
+    public void logintest(@RequestParam("user") String name, String pwd, String client,
+            HttpServletRequest req, HttpServletResponse response) throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(response.getOutputStream());
+        System.out.println("name = " + name);
+        System.out.println("pwd = " + pwd);
+        System.out.println("client = " + client);
+        System.out.println("result = " + userservice.userLogin(name, pwd, client));
+        User user = userservice.userLogin(name, pwd, client);
+        oos.writeObject(user);
+        oos.close();
     }
 
 }
