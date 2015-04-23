@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -42,6 +43,16 @@ public class UserController {
     @ResponseBody
     public String hello() {
         return "hello,world!";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public User login(@RequestParam("user") String name, String pwd, String client) {
+        System.out.println("name = " + name);
+        System.out.println("pwd = " + pwd);
+        System.out.println("client = " + client);
+        System.out.println("result = " + userservice.userLogin(name, pwd, client));
+        return userservice.userLogin(name, pwd, client);
     }
 
 }
