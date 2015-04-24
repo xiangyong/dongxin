@@ -8,4 +8,12 @@
     <groupId>com.jd.kaopu</groupId>
     <artifactId>kaopu-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.4</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
