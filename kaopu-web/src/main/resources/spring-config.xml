@@ -12,9 +12,12 @@
     <context:component-scan base-package="com.jd.kaopu.manager.*.impl"/>
     <!-- 有关service的注解扫描 -->
     <context:component-scan base-package="com.jd.kaopu.service.*.impl"/>
+     <!-- 有关rpc的注解扫描 -->
+    <context:component-scan base-package="com.jd.kaopu.rpc.*.impl"/>
     <!-- 引入配置属性文件 -->
     <context:property-placeholder location="classpath:properties/datasource.properties"/>
     <!-- 引入其他的配置文件 -->
     <import resource="spring/spring-datasource.xml"/>
     <import resource="spring/spring-transaction.xml"/>
+    <import resource="spring/spring-rpc.xml"/>
 </beans>

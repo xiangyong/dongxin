@@ -12,15 +12,11 @@ import java.util.Date;
  * 用户的状态
  * @author 周飞
  */
-public class UserState implements Serializable{
+public class UserState implements Serializable {
 
     private int id;
     // 用户ID
-    private int userid;
-    // 是否在线[0标示离线，1标示在线]
-    private int online;
-    // 最后一次登陆时间
-    private Date last_login;
+    private String pin;
     // 所有的回复数量
     private int replys_count;
     // 所有的询问数量
@@ -33,8 +29,15 @@ public class UserState implements Serializable{
     private int notice_count;
     // 购物车数量
     private int cart_count;
+    // 最后一次更新时间
+    private Date last_update;
 
     public UserState() {
+    }
+
+    @Override
+    public String toString() {
+        return "UserState{" + "id=" + id + ", pin=" + pin + ", replys_count=" + replys_count + ", asks_count=" + asks_count + ", jdou_count=" + jdou_count + ", friends_count=" + friends_count + ", notice_count=" + notice_count + ", cart_count=" + cart_count + ", last_update=" + last_update + '}';
     }
 
     public int getId() {
@@ -45,28 +48,12 @@ public class UserState implements Serializable{
         this.id = id;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getPin() {
+        return pin;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public int getOnline() {
-        return online;
-    }
-
-    public void setOnline(int online) {
-        this.online = online;
-    }
-
-    public Date getLast_login() {
-        return last_login;
-    }
-
-    public void setLast_login(Date last_login) {
-        this.last_login = last_login;
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public int getReplys_count() {
@@ -117,9 +104,12 @@ public class UserState implements Serializable{
         this.cart_count = cart_count;
     }
 
-    @Override
-    public String toString() {
-        return "UserState{" + "id=" + id + ", userid=" + userid + ", online=" + online + ", last_login=" + last_login + ", replys_count=" + replys_count + ", asks_count=" + asks_count + ", jdou_count=" + jdou_count + ", friends_count=" + friends_count + ", notice_count=" + notice_count + ", cart_count=" + cart_count + '}';
+    public Date getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
     }
 
 }

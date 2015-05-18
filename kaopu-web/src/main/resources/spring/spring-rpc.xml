@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:saf="http://code.360buy.com/schema/saf"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.360buy.com/schema/saf
+       http://code.360buy.com/schema/saf/saf.xsd"
+	default-autowire="byName" default-lazy-init="false">  
+
+	<saf:application name="kaopuweb" />
+	  
+	<saf:registry address="jdZooKeeper://192.168.150.119,192.168.150.120,192.168.150.121:2181"/>
+	 
+	<saf:reference id="cartService" interface="com.jd.cart.client.service.CartService" 
+    	url="dubbo://192.168.155.105:36060" group="192168131225" timeout="60000" version="1.1.1"/>
+	
+</beans>

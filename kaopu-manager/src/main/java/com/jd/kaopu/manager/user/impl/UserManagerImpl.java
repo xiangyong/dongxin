@@ -40,10 +40,11 @@ public class UserManagerImpl implements IUserManager {
         if (CollectionUtils.isNotEmpty(users)) {
             UserState us = new UserState();
             user = users.get(0);
-            us.setUserid(user.getId());
-            us.setOnline(UserEnum.ONLINE.getValue());
+            user.setOnline(UserEnum.ONLINE.getValue());
+            user.setLast(new Date());
             // 更改上线状态
-            userstatedao.update(us);
+            userstatedao.add(us);
+            userdao.update(user);
             return user;
         }
         return null;
@@ -51,12 +52,9 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public boolean userLogout(User user) {
-        UserState us = new UserState();
-        us.setUserid(user.getId());
-        us.setOnline(UserEnum.OUTLINE.getValue());
-        // 更改上线状态
+        user.setOnline(UserEnum.OUTLINE.getValue());
         try {
-            userstatedao.update(us);
+            userdao.update(user);
             return true;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -80,14 +78,11 @@ public class UserManagerImpl implements IUserManager {
      */
     private UserState initUserState(User user) {
         UserState us = new UserState();
-        us.setUserid(user.getId());
         us.setAsks_count(0);
         us.setCart_count(0);
         us.setFriends_count(0);
         us.setJdou_count(0);
-        us.setLast_login(new Date());
         us.setNotice_count(0);
-        us.setOnline(UserEnum.ONLINE.getValue());
         us.setReplys_count(0);
         return us;
     }

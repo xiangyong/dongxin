@@ -16,6 +16,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.jd.kaopu</groupId>
+            <artifactId>kaopu-rpc</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kaopu-manager</artifactId>
             <version>${project.version}</version>
