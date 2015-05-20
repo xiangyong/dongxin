@@ -22,7 +22,9 @@ public class Goods implements Serializable {
     // 商品分类
     private String classify;
     // 来源类型【1购物车，2浏览记录，3已购买，4关注列表，5其他】
-    private int from_type;
+    private int fromType;
+    // 是否感兴趣
+    private boolean isInterest;
     // 是否有效【0无效，1正常，2和谐】
     private int yn;
 
@@ -61,12 +63,20 @@ public class Goods implements Serializable {
         this.classify = classify;
     }
 
-    public int getFrom_type() {
-        return from_type;
+    public int getFromType() {
+        return fromType;
     }
 
-    public void setFrom_type(int from_type) {
-        this.from_type = from_type;
+    public void setFromType(int fromType) {
+        this.fromType = fromType;
+    }
+
+    public boolean isIsInterest() {
+        return isInterest;
+    }
+
+    public void setIsInterest(boolean isInterest) {
+        this.isInterest = isInterest;
     }
 
     public int getYn() {
@@ -79,7 +89,7 @@ public class Goods implements Serializable {
 
     @Override
     public String toString() {
-        return "Goods{" + "id=" + id + ", pin=" + pin + ", skuid=" + skuid + ", classify=" + classify + ", from_type=" + from_type + ", yn=" + yn + '}';
+        return "Goods{" + "id=" + id + ", pin=" + pin + ", skuid=" + skuid + ", classify=" + classify + ", fromType=" + fromType + ", isInterest=" + isInterest + ", yn=" + yn + '}';
     }
 
 }

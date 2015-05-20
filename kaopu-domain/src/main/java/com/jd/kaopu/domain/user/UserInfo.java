@@ -28,11 +28,11 @@ public class UserInfo implements Serializable {
     // 定位地址
     private String local;
     // 出生年
-    private int birth_year;
+    private int birthYear;
     // 出生月
-    private int birth_mouth;
+    private int birthMouth;
     // 出生日
-    private int birth_day;
+    private int birthDay;
     // 省
     private String province;
     // 市
@@ -55,7 +55,7 @@ public class UserInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "UserInfo{" + "pin=" + pin + ", face=" + face + ", sex=" + sex + ", age=" + age + ", email=" + email + ", phone=" + phone + ", local=" + local + ", birth_year=" + birth_year + ", birth_mouth=" + birth_mouth + ", birth_day=" + birth_day + ", province=" + province + ", city=" + city + ", weibo=" + weibo + ", qq=" + qq + ", vip=" + vip + ", level=" + level + ", netname=" + netname + ", signature=" + signature + '}';
+        return "UserInfo{" + "pin=" + pin + ", face=" + face + ", sex=" + sex + ", age=" + age + ", email=" + email + ", phone=" + phone + ", local=" + local + ", birth_year=" + birthYear + ", birth_mouth=" + birthMouth + ", birth_day=" + birthDay + ", province=" + province + ", city=" + city + ", weibo=" + weibo + ", qq=" + qq + ", vip=" + vip + ", level=" + level + ", netname=" + netname + ", signature=" + signature + '}';
     }
 
     public String getPin() {
@@ -114,28 +114,28 @@ public class UserInfo implements Serializable {
         this.local = local;
     }
 
-    public int getBirth_year() {
-        return birth_year;
+    public int getBirthYear() {
+        return birthYear;
     }
 
-    public void setBirth_year(int birth_year) {
-        this.birth_year = birth_year;
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
     }
 
-    public int getBirth_mouth() {
-        return birth_mouth;
+    public int getBirthMouth() {
+        return birthMouth;
     }
 
-    public void setBirth_mouth(int birth_mouth) {
-        this.birth_mouth = birth_mouth;
+    public void setBirthMouth(int birthMouth) {
+        this.birthMouth = birthMouth;
     }
 
-    public int getBirth_day() {
-        return birth_day;
+    public int getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirth_day(int birth_day) {
-        this.birth_day = birth_day;
+    public void setBirthDay(int birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getProvince() {

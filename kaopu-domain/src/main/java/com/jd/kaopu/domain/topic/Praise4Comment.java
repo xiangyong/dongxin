@@ -12,13 +12,11 @@ import java.util.Date;
  * 点赞表
  * @author 周飞
  */
-public class Praise implements Serializable {
+public class Praise4Comment implements Serializable {
 
     private int id;
-    // 话题
-//    private Topic topic;
-    // 话题ID
-    private int topicid;
+    // 评论回复
+    private Comment comment;
     // 回复评论人
     private String pin;
     // 评论回复时间
@@ -28,7 +26,7 @@ public class Praise implements Serializable {
     // 赞的话题类型【0直接话题，1话题的评论回复】
     private int type;
 
-    public Praise() {
+    public Praise4Comment() {
     }
 
     public int getId() {
@@ -39,12 +37,12 @@ public class Praise implements Serializable {
         this.id = id;
     }
 
-    public int getTopicid() {
-        return topicid;
+    public Comment getComment() {
+        return comment;
     }
 
-    public void setTopicid(int topicid) {
-        this.topicid = topicid;
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public String getPin() {
@@ -81,7 +79,7 @@ public class Praise implements Serializable {
 
     @Override
     public String toString() {
-        return "Praise{" + "id=" + id + ", topicid=" + topicid + ", pin=" + pin + ", create=" + create + ", yn=" + yn + ", type=" + type + '}';
+        return "Praise4Comment{" + "id=" + id + ", comment=" + comment + ", pin=" + pin + ", create=" + create + ", yn=" + yn + ", type=" + type + '}';
     }
 
 }

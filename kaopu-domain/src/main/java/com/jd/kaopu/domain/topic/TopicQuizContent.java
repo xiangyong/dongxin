@@ -11,14 +11,14 @@ import java.io.Serializable;
  * 话题内容单独存储
  * @author 周飞
  */
-public class TopicContent implements Serializable {
+public class TopicQuizContent implements Serializable {
 
     // 内容ID
     private int id;
     // 内容详情
     private String content;
 
-    public TopicContent() {
+    public TopicQuizContent() {
     }
 
     public int getId() {

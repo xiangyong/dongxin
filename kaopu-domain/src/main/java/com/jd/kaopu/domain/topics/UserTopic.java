@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jd.kaopu.domain.subject;
+package com.jd.kaopu.domain.topics;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 用户关注的主题
+ * 用户关注的话题
  * @author 周飞
  */
-public class UserSubject implements Serializable {
+public class UserTopic implements Serializable {
 
     // id
     private int id;
     // 用户
     private String pin;
-    // 用户关注的主题列表
-    private List<Subject> subject;
+    // 用户关注的话题列表
+    private List<Topic> topic;
 
-    public UserSubject() {
+    public UserTopic() {
     }
 
     public int getId() {
@@ -40,17 +40,17 @@ public class UserSubject implements Serializable {
         this.pin = pin;
     }
 
-    public List<Subject> getSubject() {
-        return subject;
+    public List<Topic> getTopic() {
+        return topic;
     }
 
-    public void setSubject(List<Subject> subject) {
-        this.subject = subject;
+    public void setTopic(List<Topic> topic) {
+        this.topic = topic;
     }
 
     @Override
     public String toString() {
-        return "UserSubject{" + "id=" + id + ", pin=" + pin + ", subject=" + subject + '}';
+        return "UserTopic{" + "id=" + id + ", pin=" + pin + ", topic=" + topic + '}';
     }
 
 }

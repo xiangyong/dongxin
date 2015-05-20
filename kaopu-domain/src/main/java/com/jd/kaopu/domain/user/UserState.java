@@ -18,26 +18,26 @@ public class UserState implements Serializable {
     // 用户ID
     private String pin;
     // 所有的回复数量
-    private int replys_count;
+    private int replysCount;
     // 所有的询问数量
-    private int asks_count;
+    private int asksCount;
     // 已有的京豆数量
-    private int jdou_count;
+    private int jdouCount;
     // 所有的朋友数量
-    private int friends_count;
+    private int friendsCount;
     // 当前通知数量
-    private int notice_count;
+    private int noticeCount;
     // 购物车数量
-    private int cart_count;
+    private int cartCount;
     // 最后一次更新时间
-    private Date last_update;
+    private Date lastUpdate;
 
     public UserState() {
     }
 
     @Override
     public String toString() {
-        return "UserState{" + "id=" + id + ", pin=" + pin + ", replys_count=" + replys_count + ", asks_count=" + asks_count + ", jdou_count=" + jdou_count + ", friends_count=" + friends_count + ", notice_count=" + notice_count + ", cart_count=" + cart_count + ", last_update=" + last_update + '}';
+        return "UserState{" + "id=" + id + ", pin=" + pin + ", replys_count=" + replysCount + ", asks_count=" + asksCount + ", jdou_count=" + jdouCount + ", friends_count=" + friendsCount + ", notice_count=" + noticeCount + ", cart_count=" + cartCount + ", last_update=" + lastUpdate + '}';
     }
 
     public int getId() {
@@ -56,60 +56,60 @@ public class UserState implements Serializable {
         this.pin = pin;
     }
 
-    public int getReplys_count() {
-        return replys_count;
+    public int getReplysCount() {
+        return replysCount;
     }
 
-    public void setReplys_count(int replys_count) {
-        this.replys_count = replys_count;
+    public void setReplysCount(int replysCount) {
+        this.replysCount = replysCount;
     }
 
-    public int getAsks_count() {
-        return asks_count;
+    public int getAsksCount() {
+        return asksCount;
     }
 
-    public void setAsks_count(int asks_count) {
-        this.asks_count = asks_count;
+    public void setAsksCount(int asksCount) {
+        this.asksCount = asksCount;
     }
 
-    public int getJdou_count() {
-        return jdou_count;
+    public int getJdouCount() {
+        return jdouCount;
     }
 
-    public void setJdou_count(int jdou_count) {
-        this.jdou_count = jdou_count;
+    public void setJdouCount(int jdouCount) {
+        this.jdouCount = jdouCount;
     }
 
-    public int getFriends_count() {
-        return friends_count;
+    public int getFriendsCount() {
+        return friendsCount;
     }
 
-    public void setFriends_count(int friends_count) {
-        this.friends_count = friends_count;
+    public void setFriendsCount(int friendsCount) {
+        this.friendsCount = friendsCount;
     }
 
-    public int getNotice_count() {
-        return notice_count;
+    public int getNoticeCount() {
+        return noticeCount;
     }
 
-    public void setNotice_count(int notice_count) {
-        this.notice_count = notice_count;
+    public void setNoticeCount(int noticeCount) {
+        this.noticeCount = noticeCount;
     }
 
-    public int getCart_count() {
-        return cart_count;
+    public int getCartCount() {
+        return cartCount;
     }
 
-    public void setCart_count(int cart_count) {
-        this.cart_count = cart_count;
+    public void setCartCount(int cartCount) {
+        this.cartCount = cartCount;
     }
 
-    public Date getLast_update() {
-        return last_update;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(Date last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
 }

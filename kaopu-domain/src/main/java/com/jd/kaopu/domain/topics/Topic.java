@@ -3,31 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jd.kaopu.domain.subject;
+package com.jd.kaopu.domain.topics;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 主题对象 主题包含【名称，创建时间，创建人，以及有效性】
+ * 话题对象 话题包含【名称，创建时间，创建人，以及有效性】
  * @author 周飞
  */
-public class Subject implements Serializable {
+public class Topic implements Serializable {
 
-    // 主题ID
+    // 话题ID
     private int id;
-    // 主题名字
+    // 父话题
+    private Topic ptopic;
+    // 话题名字
     private String name;
-    // 主题创建时间
+    // 话题创建时间
     private Date create;
-    // 主题创建的pin
+    // 话题创建的pin
     private String pin;
-    // 主题引用次数
+    // 该话题对应分类ID或者SKU
+    private int cid;
+    // 话题讨论类型(1表示分类，2表示SKU)
+    private int type;
+    // 话题引用次数
     private int count;
-    // 主题有效性【0无效，1正常，2和谐】
+    // 话题有效性【0无效，1正常，2和谐】
     private int yn;
 
-    public Subject() {
+    public Topic() {
     }
 
     public int getId() {
@@ -36,6 +42,14 @@ public class Subject implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Topic getPtopic() {
+        return ptopic;
+    }
+
+    public void setPtopic(Topic ptopic) {
+        this.ptopic = ptopic;
     }
 
     public String getName() {
@@ -78,9 +92,25 @@ public class Subject implements Serializable {
         this.yn = yn;
     }
 
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "Subject{" + "id=" + id + ", name=" + name + ", create=" + create + ", pin=" + pin + ", count=" + count + ", yn=" + yn + '}';
+        return "Topic{" + "id=" + id + ", ptopic=" + ptopic + ", name=" + name + ", create=" + create + ", pin=" + pin + ", cid=" + cid + ", type=" + type + ", count=" + count + ", yn=" + yn + '}';
     }
 
 }
